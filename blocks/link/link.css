@@ -1,0 +1,11 @@
+.link {
+    list-style-type: none;
+    text-decoration: none;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.link:hover {
+    transition: ease-in-out;
+    opacity: 0.6;
+}

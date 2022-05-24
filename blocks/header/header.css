@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    max-height: 74px;
+    max-width: 880px;
+    margin-top: 45px;
+    margin-bottom: 40px;
+    margin-left: 200px;
+    border-bottom: solid 1px #545454;
+}
+
+@media screen and (max-width: 680px) {
+    .header {
+        max-height: 56px;
+        max-width: 680px;
+        margin-top: 28px;
+        margin-bottom: 42px;
+        margin-left: 0px;
+    }
+}
