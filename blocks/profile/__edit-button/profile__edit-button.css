@@ -8,7 +8,7 @@
     justify-content: flex-end;
     z-index: 0;
     position: relative;
-    background-image: url(/images/Edit-Button.svg);
+    background-image: url(../../../images/Edit-Button.svg);
     background-color: #000000;
     background-repeat: no-repeat;
     background-position: center;
