@@ -15,6 +15,7 @@
     background-color: #000000;
     border-radius: 2px;
     align-items: center;
+    border: 0;
 }
 
 @media screen and (max-width: 680px) {

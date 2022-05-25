@@ -9,9 +9,10 @@
     z-index: 0;
     position: relative;
     background-image: url(../../../images/Edit-Button.svg);
-    background-color: #000000;
+    background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
+    border: 1px solid rgba(255, 255, 255, 1);
 }
 
 @media screen and (max-width: 680px) {
