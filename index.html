@@ -20,11 +20,11 @@
                 <img class="profile__avatar" src="images/profile-photo.png" alt="Фото Жак Ива Кусто">
                 <div class="profile__paragraph">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button type="button" class="profile__edit-button link"></button>
+                    <button type="button" aria-label="edit" class="profile__edit-button link"></button>
                     <p class="profile__subtitle">Исследователь океана</p>
                 </div>
             </div>
-            <button type="button" class="profile__add-button link"></button>
+            <button type="button" aria-label="add" class="profile__add-button link"></button>
         </section>
 
         <section class="elements">
@@ -32,43 +32,43 @@
             <article class="elements__item">
                 <img class="elements__pic" src="images/1-karachaevsk.png" alt="Карачаевск">
                 <h2 class="elements__title">Карачаевск</h2>
-                <button type="button" class="elements__design-button"><img class="elements__icon link"
-            src="images/icon.svg"></button>
+                <button type="button" aria-label="like" class="elements__design-button"><img class="elements__icon link"
+                        src="images/icon.svg"></button>
             </article>
 
             <article class="elements__item">
                 <img class="elements__pic" src="images/2-elbrus.png" alt="Карачаевск">
                 <h2 class="elements__title">Гора Эльбрус</h2>
-                <button type="button" class="elements__design-button"><img class="elements__icon link"
-            src="images/icon.svg"></button>
+                <button type="button" aria-label="like" class="elements__design-button"><img class="elements__icon link"
+                        src="images/icon.svg"></button>
             </article>
 
             <article class="elements__item">
                 <img class="elements__pic" src="images/3-dombai.jpg" alt="Карачаевск">
                 <h2 class="elements__title">Домбай</h2>
-                <button type="button" class="elements__design-button"><img class="elements__icon link"
-            src="images/icon.svg"></button>
+                <button type="button" aria-label="like" class="elements__design-button"><img class="elements__icon link"
+                        src="images/icon.svg"></button>
             </article>
 
             <article class="elements__item">
                 <img class="elements__pic" src="images/3-dombai.jpg" alt="Карачаевск">
                 <h2 class="elements__title">Домбай</h2>
-                <button type="button" class="elements__design-button"><img class="elements__icon link"
-            src="images/icon.svg"></button>
+                <button type="button" aria-label="like" class="elements__design-button"><img class="elements__icon link"
+                        src="images/icon.svg"></button>
             </article>
 
             <article class="elements__item">
                 <img class="elements__pic" src="images/2-elbrus.png" alt="Карачаевск">
                 <h2 class="elements__title">Гора Эльбрус</h2>
-                <button type="button" class="elements__design-button"><img class="elements__icon link"
-            src="images/icon.svg"></button>
+                <button type="button" aria-label="like" class="elements__design-button"><img class="elements__icon link"
+                        src="images/icon.svg"></button>
             </article>
 
             <article class="elements__item">
                 <img class="elements__pic" src="images/1-karachaevsk.png" alt="Карачаево-Черкессия">
                 <h2 class="elements__title">Карачаево-Черкессия</h2>
-                <button type="button" class="elements__design-button"><img class="elements__icon link"
-            src="images/icon.svg"></button>
+                <button type="button" aria-label="like" class="elements__design-button"><img class="elements__icon link"
+                        src="images/icon.svg"></button>
             </article>
 
         </section>
@@ -80,12 +80,14 @@
 
     <div class="popup popup_opened">
         <div class="popup__form">
-            <button type="button" class="popup__close-button"></button>
+            <button type="button" aria-label="close" class="popup__close-button link"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
+
             <form name="input" class="popup__input-container">
                 <input type="text" name="name" value="Жак-Ив Кусто" class="popup__form-item">
                 <input type="text" name="description" value="Исследователь океана" class="popup__form-item">
             </form>
+
             <button class="popup__submit" type="submit" value="Отправить на сервер">Сохранить</button>
         </div>
     </div>

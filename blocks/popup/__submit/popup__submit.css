@@ -10,12 +10,19 @@
     width: 358px;
     height: 50px;
     margin-top: 45px;
+    margin-bottom: 37px;
     display: flex;
     justify-content: center;
     background-color: #000000;
     border-radius: 2px;
     align-items: center;
     border: 0;
+    cursor: pointer;
+}
+
+.popup__submit:hover {
+    transition: ease-in-out;
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 680px) {

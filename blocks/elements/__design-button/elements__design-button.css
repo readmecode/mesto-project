@@ -2,3 +2,8 @@
     border: 0;
     background-color: #FFFFFF;
 }
+
+.elements__design-button:hover {
+    transition: ease-in-out;
+    opacity: 0.5;
+}
