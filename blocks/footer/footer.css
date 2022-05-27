@@ -6,13 +6,15 @@
     max-width: 880px;
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 1100px) {
     .footer {
-        max-width: 282px;
         font-size: 14px;
         line-height: 17px;
         text-align: left;
-        margin-left: 19px;
+        margin-top: 48px;
+        margin-left: 0px;
         margin-bottom: 36px;
+        padding-left: 19px;
+        padding-right: 19px;
     }
 }

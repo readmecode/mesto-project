@@ -2,7 +2,7 @@
     display: block;
     max-width: 358px;
     border: 0;
-    border-bottom: solid 1px rgba(84, 84, 84, 1);
+    border-bottom: solid 1px rgba(84, 84, 84, 0.2);
     height: 27px;
     font-size: 14px;
     line-height: 16.94px;
