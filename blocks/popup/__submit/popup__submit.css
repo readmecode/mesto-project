@@ -7,9 +7,11 @@
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
+    margin: 0;
+    padding: 0;
     width: 358px;
     height: 50px;
-    margin-top: 45px;
+    margin-top: 48px;
     margin-bottom: 37px;
     display: flex;
     justify-content: center;
@@ -35,5 +37,7 @@
         height: 46px;
         padding-left: 22px;
         padding-right: 22px;
+        margin-bottom: 25px;
+        margin-top: 45px;
     }
 }
