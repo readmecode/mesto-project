@@ -7,15 +7,15 @@
     background-color: transparent;
     border: 0;
     position: relative;
-    bottom: 190px;
-    left: 470px;
+    bottom: 40px;
+    left: 239px;
 }
 
 @media screen and (max-width: 1100px) {
     .popup__close-button {
         width: 20px;
         height: 20px;
-        left: 282px;
-        bottom: 186px;
+        left: 131px;
+        bottom: 36px;
     }
 }
