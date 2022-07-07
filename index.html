@@ -27,69 +27,60 @@
             <button type="button" aria-label="add" class="profile__add-button link"></button>
         </section>
 
-        <section class="elements">
-
-            <article class="elements__item">
-                <img class="elements__pic" src="images/1-karachaevsk.png" alt="Карачаевск">
-                <h2 class="elements__title">Карачаевск</h2>
-                <button type="button" aria-label="like" class="elements__design-button"><img class="elements__icon link"
-                        src="images/icon.svg" alt="Логотип сердца"></button>
-            </article>
-
-            <article class="elements__item">
-                <img class="elements__pic" src="images/2-elbrus.png" alt="Карачаевск">
-                <h2 class="elements__title">Гора Эльбрус</h2>
-                <button type="button" aria-label="like" class="elements__design-button"><img class="elements__icon link"
-                        src="images/icon.svg" alt="Логотип сердца"></button>
-            </article>
-
-            <article class="elements__item">
-                <img class="elements__pic" src="images/3-dombai.jpg" alt="Карачаевск">
-                <h2 class="elements__title">Домбай</h2>
-                <button type="button" aria-label="like" class="elements__design-button"><img class="elements__icon link"
-                        src="images/icon.svg" alt="Логотип сердца"></button>
-            </article>
-
-            <article class="elements__item">
-                <img class="elements__pic" src="images/3-dombai.jpg" alt="Карачаевск">
-                <h2 class="elements__title">Домбай</h2>
-                <button type="button" aria-label="like" class="elements__design-button"><img class="elements__icon link"
-                        src="images/icon.svg" alt="Логотип сердца"></button>
-            </article>
-
-            <article class="elements__item">
-                <img class="elements__pic" src="images/2-elbrus.png" alt="Карачаевск">
-                <h2 class="elements__title">Гора Эльбрус</h2>
-                <button type="button" aria-label="like" class="elements__design-button"><img class="elements__icon link"
-                        src="images/icon.svg" alt="Логотип сердца"></button>
-            </article>
-
-            <article class="elements__item">
-                <img class="elements__pic" src="images/1-karachaevsk.png" alt="Карачаево-Черкессия">
-                <h2 class="elements__title">Карачаево-Черкессия</h2>
-                <button type="button" aria-label="like" class="elements__design-button"><img class="elements__icon link"
-                        src="images/icon.svg" alt="Логотип сердца"></button>
-            </article>
-
-        </section>
+        <template class="elements" id="photo-elements-template">
+            <li id="element" class="elements__item">
+                <img class="elements__pic" id="image" alt="Место">
+                <img id="trash" class="elements__trash link">
+                <h2 id="el-title" class="elements__title">
+                </h2>
+                <button type="button" aria-label="like" class="elements__design-button"><img id="icon"
+                        class="elements__icon" class="link"></button>
+            </li>
+        </template>
     </main>
 
     <footer class="footer">
         <p class="footer__author">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup popup_opened">
-
-        <div class="popup__form">
-            <button type="button" aria-label="close" class="popup__close-button link"></button>
-            <h3 class="popup__title">Редактировать профиль</h3>
-            <form name="input" class="popup__input-container">
-                <input type="text" name="name" value="Жак-Ив Кусто" class="popup__form-item">
-                <input type="text" name="description" value="Исследователь океана" class="popup__form-item">
-            </form>
-            <button class="popup__submit" type="submit" value="Отправить на сервер">Сохранить</button>
+    <div id="profile" class="popup">
+        <div class="popup__edit-profile">
+            <div class="popup__form">
+                <button type="button" aria-label="close" class="popup__close-button link"></button>
+                <h3 class="popup__title">Редактировать профиль</h3>
+                <form name="input" class="popup__input-container">
+                    <input id="profile-name" type="text" name="name" value="Жак-Ив Кусто" class="popup__form-item">
+                    <input id="profile-desc" type="text" name="description" value="Исследователь океана" class="popup__form-item">
+                </form>
+                <button class="popup__submit" type="submit" value="Отправить на сервер">Сохранить</button>
+            </div>
         </div>
     </div>
+    <div id="card" class="popup">
+        <div class="popup__add-card">
+            <div class="popup__form">
+                <button type="button" aria-label="close" class="popup__close-button link"></button>
+                <h3 class="popup__title">Новое место</h3>
+                <form name="input" class="popup__input-container">
+                    <input type="text" id="name" name="name" value="Название" class="popup__form-item">
+                    <input type="text" id="link" name="description" value="Ссылка на картинку" class="popup__form-item">
+                </form>
+                <button class="popup__submit" type="submit" value="Отправить на сервер">Создать</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup-img" class="popup">
+        <div class="popup__image-form">
+            <div class="popup__button">
+                <button id="button-img" type="button" aria-label="close" class="popup__close-button popup__close-button_image link"></button>
+            </div>
+            <img id="img-popup" class="popup__image" src="">
+            <h3 id="title-popup" class="popup__image-title"></h3>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
