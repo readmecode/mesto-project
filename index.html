@@ -26,17 +26,23 @@
             </div>
             <button type="button" aria-label="add" class="profile__add-button link"></button>
         </section>
-
-        <template class="elements" id="photo-elements-template">
-            <li id="element" class="elements__item">
-                <img class="elements__pic" id="image" alt="Место">
-                <img id="trash" class="elements__trash link">
-                <h2 id="el-title" class="elements__title">
-                </h2>
-                <button type="button" aria-label="like" class="elements__design-button"><img id="icon"
-                        class="elements__icon" class="link"></button>
-            </li>
+        <section>
+            <ul class="elements">
+            </ul>
+        </section>
+        <template id="photo-elements-template">
+            <ul>
+                <li id="element" class="elements__item">
+                    <img class="elements__pic" id="image" alt="Место">
+                    <img id="trash" class="elements__trash link">
+                    <h2 id="el-title" class="elements__title">
+                    </h2>
+                    <button type="button" aria-label="like" class="elements__design-button"><img id="icon"
+                            class="elements__icon" class="link"></button>
+                </li>
+            </ul>
         </template>
+
     </main>
 
     <footer class="footer">
@@ -65,7 +71,7 @@
                     <input type="text" id="name" name="name" value="Название" class="popup__form-item">
                     <input type="text" id="link" name="description" value="Ссылка на картинку" class="popup__form-item">
                 </form>
-                <button class="popup__submit" type="submit" value="Отправить на сервер">Создать</button>
+                <button id="add-submit-button" class="popup__submit" type="submit" value="Отправить на сервер">Создать</button>
             </div>
         </div>
     </div>
@@ -75,7 +81,7 @@
             <div class="popup__button">
                 <button id="button-img" type="button" aria-label="close" class="popup__close-button popup__close-button_image link"></button>
             </div>
-            <img id="img-popup" class="popup__image" src="">
+            <img id="img-popup" class="popup__image" src="" alt="">
             <h3 id="title-popup" class="popup__image-title"></h3>
         </div>
     </div>

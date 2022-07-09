@@ -1,6 +1,7 @@
 .elements__design-button {
     border: none;
     background-color: #FFFFFF;
+    cursor: pointer;
 }
 
 .elements__design-button:hover {
