@@ -7,7 +7,7 @@
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
-    min-width: 282px;
+    max-width: 282px;
     margin: 0;
     padding: 0;
     padding-top: 22px;

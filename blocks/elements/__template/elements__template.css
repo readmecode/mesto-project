@@ -1,0 +1,7 @@
+.elements__template {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    justify-items: center;
+    justify-content: center;
+}
