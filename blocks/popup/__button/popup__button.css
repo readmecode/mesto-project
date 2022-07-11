@@ -1,12 +1,5 @@
 .popup__button {
     display: flex;
     width: 75vw;
-    margin-top: 50px;
     justify-content: end;
-}
-
-@media screen and (max-width: 1100px) {
-    .popup__button {
-        margin-top: 100px;
-    }
 }

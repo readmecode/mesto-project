@@ -54,7 +54,7 @@
             <div class="popup__form">
                 <button type="button" aria-label="close" class="popup__close-button link"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <form name="input" class="popup__input-container">
+                <form id="editProfileForm" name="input" class="popup__input-container">
                     <input id="profile-name" type="text" name="name" value="Жак-Ив Кусто" class="popup__form-item">
                     <input id="profile-desc" type="text" name="description" value="Исследователь океана" class="popup__form-item">
                     <button id="edit-submit-button" class="popup__submit" type="submit" value="Отправить на сервер">Сохранить</button>
@@ -68,7 +68,7 @@
             <div class="popup__form">
                 <button type="button" aria-label="close" class="popup__close-button link"></button>
                 <h3 class="popup__title">Новое место</h3>
-                <form name="input" class="popup__input-container">
+                <form id="addCardForm" name="input" class="popup__input-container">
                     <input type="text" id="name" name="place" placeholder="Название" class="popup__form-item">
                     <input type="text" id="link" name="description" placeholder="Ссылка на картинку" class="popup__form-item">
                     <button id="add-submit-button" class="popup__submit" type="submit" value="Отправить на сервер">Создать</button>
@@ -77,12 +77,14 @@
         </div>
     </div>
 
-    <div id="popup-img" class="popup">
+    <div id="popup-img" class="popup ">
+        <div class="popup__image-form">
+        </div>
         <div class="popup__image-form">
             <div class="popup__button">
                 <button id="button-img" type="button" aria-label="close" class="popup__close-button popup__close-button_image link"></button>
             </div>
-            <img id="img-popup" class="popup__image" alt="">
+            <img id="img-popup" class="popup__image" src="" alt="">
             <h3 id="title-popup" class="popup__image-title"></h3>
         </div>
     </div>

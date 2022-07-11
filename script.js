@@ -48,8 +48,7 @@ const jobProfile = document.querySelector(".profile__subtitle");
 const nameInput = document.querySelector("#profile-name");
 const jobInput = document.querySelector("#profile-desc");
 
-const newCardName = document.querySelector("#name");
-const newCardLink = document.querySelector("#link");
+
 
 const cardsTemplate = document.querySelector(
     "#photo-elements-template"
@@ -61,6 +60,12 @@ const cardTitle = document.getElementById("title-popup");
 const cardImg = document.getElementById("img-popup");
 
 const titleTemplate = document.querySelector("#el-title");
+
+const profileEditForm = document.getElementById("editProfileForm");
+const cardAddForm = document.getElementById("addCardForm");
+
+const newCardName = addCardForm.querySelector("#name");
+const newCardLink = addCardForm.querySelector("#link");
 
 function openPopup(popup) {
     popup.classList.add("popup_opened");
@@ -83,7 +88,6 @@ function activateElement(e) {
 
 function openPopupImage(imgLink, imgTitle) {
     openPopup(imagePopup);
-    document.querySelector(".page").classList.add("page_hidden");
     cardImg.setAttribute("src", imgLink);
     cardImg.alt = this.alt;
     cardTitle.textContent = imgTitle;
@@ -103,6 +107,7 @@ function createCardTemplate(titleTemplate, imageLink) {
     cardElementImage.alt = imageLink;
 
     cardElementLike.addEventListener("click", activateElement);
+
     cardElementImage.addEventListener("click", () => {
         openPopupImage(imageLink, titleTemplate);
     });
@@ -121,8 +126,6 @@ function renderCard(elementName, elementLink) {
 
 function createCard(evt) {
     evt.preventDefault();
-    newCardName.value = "";
-    newCardLink.value = "";
     renderCard(newCardName.value, newCardLink.value);
 }
 
@@ -133,8 +136,6 @@ profileCloseButton.addEventListener("click", () => {
 });
 
 cardCloseButton.addEventListener("click", () => {
-    newCardName.value = "";
-    newCardLink.value = "";
     closePopup(cardPopup);
 });
 
@@ -143,7 +144,6 @@ cardSubmitButton.addEventListener("click", () => {
 });
 
 imageCloseButton.addEventListener("click", () => {
-    document.querySelector(".page").classList.remove("page_hidden");
     closePopup(imagePopup);
 });
 
@@ -152,12 +152,13 @@ profileEditButton.addEventListener("click", () => {
 });
 
 cardAddButton.addEventListener("click", () => {
+    addCardForm.reset();
     openPopup(cardPopup);
 });
 
-cardPopup.addEventListener("submit", createCard);
+cardAddForm.addEventListener("submit", createCard);
 
-profilePopup.addEventListener("submit", editFormSubmitHandler);
+profileEditForm.addEventListener("submit", editFormSubmitHandler);
 
 initialCards.forEach(function(card) {
     renderCard(card.name, card.link);
