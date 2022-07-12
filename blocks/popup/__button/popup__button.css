@@ -1,5 +1,4 @@
 .popup__button {
     display: flex;
-    width: 75vw;
     justify-content: end;
 }

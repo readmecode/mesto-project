@@ -1,11 +1,8 @@
 .elements__pic {
-    width: 100%;
-    object-fit: cover;
     border-radius: 10px 10px 0 0;
     box-sizing: border-box;
     width: 282px;
     height: 282px;
     position: relative;
-    z-index: 0;
     cursor: pointer;
 }
