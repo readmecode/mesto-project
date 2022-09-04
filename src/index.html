@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="pages/index.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Проект Место</title>
 </head>
@@ -11,13 +10,13 @@
 <body class="page">
 
     <header class="header">
-        <img class="header__logo" src="images/logo.svg" alt="Логотип проекта место">
+        <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип проекта место">
     </header>
 
     <main class="content">
         <section class="profile">
             <div class="profile__info">
-                <img class="profile__avatar" src="images/profile-photo.png" alt="Фото Жак Ива Кусто">
+                <img class="profile__avatar" src="<%=require('./images/profile-photo.png')%>" alt="Фото Жак Ива Кусто">
                 <div class="profile__paragraph">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <button type="button" aria-label="edit" class="profile__edit-button link"></button>
@@ -50,13 +49,17 @@
     </footer>
 
     <div id="profile" class="popup">
+        <div class="popup__overlay">
+        </div>
         <div class="popup__edit-profile">
             <div class="popup__form">
                 <button type="button" aria-label="close" class="popup__close-button link"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <form id="editProfileForm" name="input" class="popup__input-container">
-                    <input id="profile-name" type="text" name="name" value="Жак-Ив Кусто" class="popup__form-item">
-                    <input id="profile-desc" type="text" name="description" value="Исследователь океана" class="popup__form-item">
+                <form id="editProfileForm" name="input" class="popup__input-container" novalidate>
+                    <input id="profile-name" type="text" name="name" value="Жак-Ив Кусто" class="popup__form-item" required minlength="2" maxlength="40" pattern="^[A-Za-zА-Яа-яЁё \-]+$" data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы">
+                    <span class="popup__form-item-error profile-name-error">Вы пропустили это поле.</span>
+                    <input id="profile-desc" type="text" name="description" value="Исследователь океана" class="popup__form-item" required minlength="2" maxlength="200" pattern="^[A-Za-zА-Яа-яЁё \-]+$" data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы">
+                    <span class="popup__form-item-error profile-desc-error">Вы пропустили это поле.</span>
                     <button id="edit-submit-button" class="popup__submit" type="submit" value="Отправить на сервер">Сохранить</button>
                 </form>
 
@@ -64,13 +67,17 @@
         </div>
     </div>
     <div id="card" class="popup">
+        <div class="popup__overlay">
+        </div>
         <div class="popup__add-card">
             <div class="popup__form">
                 <button type="button" aria-label="close" class="popup__close-button link"></button>
                 <h3 class="popup__title">Новое место</h3>
-                <form id="addCardForm" name="input" class="popup__input-container">
-                    <input type="text" id="name" name="place" placeholder="Название" class="popup__form-item">
-                    <input type="text" id="link" name="description" placeholder="Ссылка на картинку" class="popup__form-item">
+                <form id="addCardForm" name="input" class="popup__input-container" novalidate>
+                    <input type="text" id="name" name="place" placeholder="Название" class="popup__form-item" required minlength="2" maxlength="30" pattern="^[A-Za-zА-Яа-яЁё \-]+$" data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы">
+                    <span class="popup__form-item-error name-error">Вы пропустили это поле.</span>
+                    <input type="url" id="link" name="description" placeholder="Ссылка на картинку" class="popup__form-item" required>
+                    <span class="popup__form-item-error link-error">Введите адрес сайта.</span>
                     <button id="add-submit-button" class="popup__submit" type="submit" value="Отправить на сервер">Создать</button>
                 </form>
             </div>
@@ -87,8 +94,6 @@
         </div>
 
     </div>
-
-    <script src="script.js"></script>
 </body>
 
 </html>
