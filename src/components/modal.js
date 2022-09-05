@@ -2,10 +2,6 @@ import {
     cardImg,
     cardTitle,
     imagePopup,
-    nameProfile,
-    jobProfile,
-    nameInput,
-    jobInput,
     profilePopup,
 } from "./constant.js";
 
