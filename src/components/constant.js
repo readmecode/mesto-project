@@ -1,33 +1,3 @@
-export {
-    initialCards,
-    profilePopup,
-    cardPopup,
-    imagePopup,
-    cardCloseButton,
-    cardSubmitButton,
-    imageCloseButton,
-    profileEditButton,
-    profileCloseButton,
-    cardAddButton,
-    nameProfile,
-    jobProfile,
-    nameInput,
-    jobInput,
-    cardsTemplate,
-    cardsContainer,
-    cardDeleteButton,
-    cardTitle,
-    cardImg,
-    titleTemplate,
-    profileEditForm,
-    cardAddForm,
-    newCardName,
-    newCardLink,
-    formElement,
-    formInput,
-    formError
-};
-
 const initialCards = [{
         name: "Архыз",
         link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
@@ -54,6 +24,7 @@ const initialCards = [{
     },
 ];
 
+const closeButtons = document.querySelectorAll(".popup__close-button");
 const profilePopup = document.querySelector("#profile");
 const cardPopup = document.querySelector("#card");
 const imagePopup = document.querySelector("#popup-img");
@@ -95,6 +66,37 @@ const cardAddForm = document.getElementById("addCardForm");
 const newCardName = addCardForm.querySelector("#name");
 const newCardLink = addCardForm.querySelector("#link");
 
-const formElement = document.querySelector(".popup__input-container");
-const formInput = formElement.querySelector(".popup__form-item");
-const formError = formElement.querySelector(`.${formInput.id}-error`);
+const profileForm = document.querySelector(".popup__input-container");
+const formInput = profileForm.querySelector(".popup__form-item");
+const formError = profileForm.querySelector(`.${formInput.id}-error`);
+
+export {
+    initialCards,
+    profilePopup,
+    cardPopup,
+    imagePopup,
+    cardCloseButton,
+    cardSubmitButton,
+    imageCloseButton,
+    profileEditButton,
+    profileCloseButton,
+    cardAddButton,
+    nameProfile,
+    jobProfile,
+    nameInput,
+    jobInput,
+    cardsTemplate,
+    cardsContainer,
+    cardDeleteButton,
+    cardTitle,
+    cardImg,
+    titleTemplate,
+    profileEditForm,
+    cardAddForm,
+    newCardName,
+    newCardLink,
+    profileForm,
+    formInput,
+    formError,
+    closeButtons,
+};

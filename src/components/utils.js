@@ -1,26 +1,29 @@
-export { openPopupImage, editFormSubmitHandler };
-import { openPopup, closePopup } from "./modal.js";
-import {
-    cardImg,
-    cardTitle,
-    imagePopup,
-    nameProfile,
-    jobProfile,
-    nameInput,
-    jobInput,
-    profilePopup,
-} from "./constant.js";
+import { handleEscapeKey, overlayHandler } from "./modal.js";
 
-function editFormSubmitHandler(e) {
-    e.preventDefault();
-    nameProfile.textContent = nameInput.value;
-    jobProfile.textContent = jobInput.value;
-    closePopup(profilePopup);
+import { nameProfile, jobProfile, nameInput, jobInput } from "./constant.js";
+
+import { enableValidation } from "./validate.js";
+
+function closePopup(popup) {
+    popup.classList.remove("popup_opened");
+    document.removeEventListener("keydown", handleEscapeKey);
+    document.removeEventListener("mousedown", overlayHandler);
 }
 
-function openPopupImage(imgLink, imgTitle) {
-    openPopup(imagePopup);
-    cardImg.setAttribute("src", imgLink);
-    cardImg.alt = imgLink.alt;
-    cardTitle.textContent = imgTitle;
+function openPopup(popup) {
+    popup.classList.add("popup_opened");
+    document.addEventListener("keydown", handleEscapeKey);
+    document.addEventListener("mousedown", overlayHandler);
+    enableValidation({
+        formSelector: ".popup__input-container",
+        inputSelector: ".popup__form-item",
+        submitButtonSelector: ".popup__submit",
+        inactiveButtonClass: "popup__submit_inactive",
+        inputErrorClass: "popup__form-item-type-error",
+        errorClass: "popup__form-item-error_active",
+    });
+    nameInput.value = nameProfile.textContent;
+    jobInput.value = jobProfile.textContent;
 }
+
+export { openPopup, closePopup };

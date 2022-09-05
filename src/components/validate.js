@@ -1,23 +1,19 @@
-export { enableValidation };
-
-import { formElement } from "./constant.js";
-
 function enableValidation(params) {
     const formList = Array.from(document.querySelectorAll(params.formSelector));
 
-    formList.forEach((formElement) => {
-        formElement.addEventListener("submit", (evt) => {
+    formList.forEach((profileForm) => {
+        profileForm.addEventListener("submit", (evt) => {
             evt.preventDefault();
         });
 
         function setEventListeners(
             inputSelector,
-            formElement,
+            profileForm,
             submitButtonSelector
         ) {
-            const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+            const inputList = Array.from(profileForm.querySelectorAll(inputSelector));
 
-            const buttonElement = formElement.querySelector(submitButtonSelector);
+            const buttonElement = profileForm.querySelector(submitButtonSelector);
 
             function toggleButtonState(inputList, buttonElement) {
                 function hasInvalidInput(inputList) {
@@ -38,15 +34,15 @@ function enableValidation(params) {
 
             inputList.forEach((inputElement) => {
                 inputElement.addEventListener("input", function() {
-                    function checkInputValidity(formElement, inputElement) {
+                    function checkInputValidity(profileForm, inputElement) {
                         if (inputElement.validity.patternMismatch) {
                             inputElement.setCustomValidity(inputElement.dataset.errorMessage);
                         } else {
                             inputElement.setCustomValidity("");
                         }
                         if (!inputElement.validity.valid) {
-                            function showInputError(formElement, inputElement, errorMessage) {
-                                const errorElement = formElement.querySelector(
+                            function showInputError(profileForm, inputElement, errorMessage) {
+                                const errorElement = profileForm.querySelector(
                                     `.${inputElement.id}-error`
                                 );
                                 inputElement.classList.add(params.inputErrorClass);
@@ -54,24 +50,24 @@ function enableValidation(params) {
                                 errorElement.classList.add(params.errorClass);
                             }
                             showInputError(
-                                formElement,
+                                profileForm,
                                 inputElement,
                                 inputElement.validationMessage
                             );
                         } else {
-                            function hideInputError(formElement, inputElement) {
-                                const errorElement = formElement.querySelector(
+                            function hideInputError(profileForm, inputElement) {
+                                const errorElement = profileForm.querySelector(
                                     `.${inputElement.id}-error`
                                 );
                                 inputElement.classList.remove(params.inputErrorClass);
                                 errorElement.classList.remove(params.errorClass);
                                 errorElement.textContent = "";
                             }
-                            hideInputError(formElement, inputElement);
+                            hideInputError(profileForm, inputElement);
                         }
                     }
 
-                    checkInputValidity(formElement, inputElement);
+                    checkInputValidity(profileForm, inputElement);
 
                     toggleButtonState(inputList, buttonElement);
                 });
@@ -80,8 +76,10 @@ function enableValidation(params) {
 
         setEventListeners(
             params.inputSelector,
-            formElement,
+            profileForm,
             params.submitButtonSelector
         );
     });
 }
+
+export { enableValidation };

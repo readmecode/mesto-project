@@ -1,7 +1,13 @@
-export { createCardTemplate, renderCard, createCard, activateElement };
-
-import { cardsTemplate, cardsContainer, titleTemplate, newCardName, newCardLink } from "./constant.js";
-import { openPopupImage } from "./utils.js";
+import {
+    cardsTemplate,
+    cardsContainer,
+    titleTemplate,
+    newCardName,
+    newCardLink,
+    cardPopup,
+} from "./constant.js";
+import { openPopupImage } from "./modal.js";
+import { closePopup } from "./utils.js";
 
 function createCardTemplate(titleTemplate, imageLink) {
     const cardElement = cardsTemplate.cloneNode(true);
@@ -16,7 +22,7 @@ function createCardTemplate(titleTemplate, imageLink) {
     cardElementImage.src = imageLink;
     cardElementImage.alt = imageLink;
 
-    cardElementLike.addEventListener("click", activateElement);
+    cardElementLike.addEventListener("click", toggleLike);
 
     cardElementImage.addEventListener("click", () => {
         openPopupImage(imageLink, titleTemplate);
@@ -30,15 +36,18 @@ function createCardTemplate(titleTemplate, imageLink) {
 }
 
 function renderCard(elementName, elementLink) {
-    const newCards = createCardTemplate(elementName, elementLink);
-    cardsContainer.prepend(newCards);
+    const newCard = createCardTemplate(elementName, elementLink);
+    cardsContainer.prepend(newCard);
 }
 
 function createCard(evt) {
-    evt.preventDefault();
+    evt.target.reset();
     renderCard(newCardName.value, newCardLink.value);
+    closePopup(cardPopup);
 }
 
-function activateElement(e) {
+function toggleLike(e) {
     e.target.classList.toggle("elements__icon_active");
 }
+
+export { createCardTemplate, renderCard, createCard, toggleLike };
