@@ -41,8 +41,10 @@ function renderCard(elementName, elementLink) {
 }
 
 function createCard(evt) {
-    evt.target.reset();
+    evt.submitter.classList.add("popup__submit_inactive");
+    evt.submitter.disabled = true;
     renderCard(newCardName.value, newCardLink.value);
+    evt.target.reset();
     closePopup(cardPopup);
 }
 
