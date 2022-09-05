@@ -30,10 +30,7 @@ import {
     formError,
 } from "./components/constant.js";
 
-import {
-    openPopupImage,
-    editFormSubmitHandler,
-} from "./components/utils.js";
+import { openPopupImage, editFormSubmitHandler } from "./components/utils.js";
 
 import {
     closePopup,
@@ -71,11 +68,27 @@ imageCloseButton.addEventListener("click", () => {
 
 profileEditButton.addEventListener("click", () => {
     openPopup(profilePopup);
+    enableValidation({
+        formSelector: ".popup__input-container",
+        inputSelector: ".popup__form-item",
+        submitButtonSelector: ".popup__submit",
+        inactiveButtonClass: "popup__submit_inactive",
+        inputErrorClass: "popup__form-item-type-error",
+        errorClass: "popup__form-item-error_active",
+    });
 });
 
 cardAddButton.addEventListener("click", () => {
     addCardForm.reset();
     openPopup(cardPopup);
+    enableValidation({
+        formSelector: ".popup__input-container",
+        inputSelector: ".popup__form-item",
+        submitButtonSelector: ".popup__submit",
+        inactiveButtonClass: "popup__submit_inactive",
+        inputErrorClass: "popup__form-item-type-error",
+        errorClass: "popup__form-item-error_active",
+    });
 });
 
 cardAddForm.addEventListener("submit", createCard);
@@ -84,13 +97,4 @@ profileEditForm.addEventListener("submit", editFormSubmitHandler);
 
 initialCards.forEach(function(card) {
     renderCard(card.name, card.link);
-});
-
-enableValidation({
-    formSelector: ".popup__input-container",
-    inputSelector: ".popup__form-item",
-    submitButtonSelector: ".popup__submit",
-    inactiveButtonClass: "popup__submit_inactive",
-    inputErrorClass: "popup__form-item-type-error",
-    errorClass: "popup__form-item-error_active",
 });

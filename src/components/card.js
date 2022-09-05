@@ -1,6 +1,6 @@
 export { createCardTemplate, renderCard, createCard, activateElement };
 
-import { cardsTemplate, cardsContainer, titleTemplate } from "./constant.js";
+import { cardsTemplate, cardsContainer, titleTemplate, newCardName, newCardLink } from "./constant.js";
 import { openPopupImage } from "./utils.js";
 
 function createCardTemplate(titleTemplate, imageLink) {
