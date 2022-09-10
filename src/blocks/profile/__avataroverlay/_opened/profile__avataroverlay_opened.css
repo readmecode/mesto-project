@@ -1,0 +1,5 @@
+.profile__avataroverlay_opened {
+    visibility: visible;
+    opacity: 1;
+    transition: 200ms;
+}

@@ -1,3 +1,11 @@
+import {
+    postCard,
+    editProfile,
+    getProfile,
+    getCards,
+    getIdData,
+} from "./components/api.js";
+
 import "./styles/index.css";
 
 import {
@@ -12,12 +20,21 @@ import {
     nameInput,
     jobInput,
     nameProfile,
-    jobProfile
+    jobProfile,
+    avatarPopup,
+    avatarChangeButton,
+    avatarOverlay,
+    avatarLink,
+    avatarChangeForm
 } from "./components/constant.js";
 
-import { closePopup, openPopup } from "./components/utils.js";
+import { closePopup, openPopup, loadStatus } from "./components/utils.js";
 
-import { editFormSubmitHandler } from "./components/modal.js";
+import {
+    editFormSubmitHandler,
+    avatarFormSubmitHandler,
+    showAvatarEditButton
+} from "./components/modal.js";
 
 import { renderCard, createCard } from "./components/card.js";
 
@@ -47,10 +64,21 @@ cardAddButton.addEventListener("click", () => {
     openPopup(cardPopup);
 });
 
+avatarChangeButton.addEventListener("click", () => {
+    openPopup(avatarPopup);
+});
+
 cardAddForm.addEventListener("submit", createCard);
 
 profileEditForm.addEventListener("submit", editFormSubmitHandler);
 
-initialCards.forEach(function(card) {
-    renderCard(card.name, card.link);
-});
+avatarChangeForm.addEventListener("submit", avatarFormSubmitHandler);
+
+avatarLink.addEventListener("mouseover", showAvatarEditButton);
+
+profileEditForm.addEventListener('submit', loadStatus);
+avatarChangeForm.addEventListener('submit', loadStatus);
+cardAddForm.addEventListener('submit', loadStatus);
+
+getProfile();
+getCards();

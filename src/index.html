@@ -16,7 +16,10 @@
     <main class="content">
         <section class="profile">
             <div class="profile__info">
-                <img class="profile__avatar" src="<%=require('./images/profile-photo.png')%>" alt="Фото Жак Ива Кусто">
+                <img class="profile__avatar" id="avatar-link" src="<%=require('./images/profile-photo.png')%>" alt="Фото">
+                <div class="profile__avataroverlay">
+                    <button class="profile__changeavatar link" id="avatar-change-button" src="<%=require('./images/edit.svg')%>" alt="Кнопка редактирования"></button>
+                </div>
                 <div class="profile__paragraph">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <button type="button" aria-label="edit" class="profile__edit-button link"></button>
@@ -35,8 +38,11 @@
                     <img id="trash" class="elements__trash link">
                     <h2 id="el-title" class="elements__title">
                     </h2>
-                    <button type="button" aria-label="like" class="elements__design-button"><img id="icon"
-                            class="elements__icon link"></button>
+                    <button type="button" aria-label="like" class="elements__design-button">
+                        <img id="icon" class="elements__icon link">
+                    <p id="likecount" class="elements__likecount"></p>
+                    </button>
+
                 </li>
         </template>
 
@@ -77,6 +83,22 @@
                     <input type="url" id="link" name="description" placeholder="Ссылка на картинку" class="popup__form-item" required>
                     <span class="popup__form-item-error link-error">Введите адрес сайта.</span>
                     <button id="add-submit-button" class="popup__submit" type="submit" value="Отправить на сервер">Создать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="avatar" class="popup">
+        <div class="popup__overlay">
+        </div>
+        <div class="popup__avatar">
+            <div class="popup__form">
+                <button type="button" aria-label="close" class="popup__close-button link"></button>
+                <h3 class="popup__title">Обновить аватар</h3>
+                <form id="avatarchangeForm" name="input" class="popup__input-container" novalidate>
+                    <input type="url" id="link-avatar-input" name="avatar" placeholder="Ссылка на картинку" class="popup__form-item" required>
+                    <span class="popup__form-item-error link-avatar-input-error">Введите адрес сайта.</span>
+                    <button id="avatar-submit-button" class="popup__submit" type="submit" value="Отправить на сервер">Сохранить</button>
                 </form>
             </div>
         </div>

@@ -28,6 +28,10 @@ const closeButtons = document.querySelectorAll(".popup__close-button");
 const profilePopup = document.querySelector("#profile");
 const cardPopup = document.querySelector("#card");
 const imagePopup = document.querySelector("#popup-img");
+const avatarPopup = document.querySelector("#avatar");
+const avatarOverlay = document.querySelector(".profile__avataroverlay");
+
+const avatarChangeButton = document.querySelector("#avatar-change-button");
 
 const profileCloseButton = profilePopup.querySelector(
     "#profile .popup__close-button"
@@ -48,6 +52,8 @@ const nameProfile = document.querySelector(".profile__title");
 const jobProfile = document.querySelector(".profile__subtitle");
 const nameInput = document.querySelector("#profile-name");
 const jobInput = document.querySelector("#profile-desc");
+const avatarInput = document.querySelector("#link-avatar-input");
+const avatarLink = document.querySelector("#avatar-link");
 
 const cardsTemplate = document.querySelector(
     "#photo-elements-template"
@@ -62,6 +68,7 @@ const titleTemplate = document.querySelector("#el-title");
 
 const profileEditForm = document.getElementById("editProfileForm");
 const cardAddForm = document.getElementById("addCardForm");
+const avatarChangeForm = document.getElementById("avatarchangeForm");
 
 const newCardName = addCardForm.querySelector("#name");
 const newCardLink = addCardForm.querySelector("#link");
@@ -99,4 +106,10 @@ export {
     formInput,
     formError,
     closeButtons,
+    avatarPopup,
+    avatarChangeButton,
+    avatarInput,
+    avatarLink,
+    avatarChangeForm,
+    avatarOverlay
 };

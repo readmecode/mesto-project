@@ -12,4 +12,10 @@ function openPopup(popup) {
     document.addEventListener("mousedown", overlayHandler);
 }
 
-export { openPopup, closePopup };
+function loadStatus(evt) {
+    const field = document.querySelectorAll(".popup__submit");
+    field.innerText = 'Сохранение...';
+    console.log('Сохранение...');
+}
+
+export { openPopup, closePopup, loadStatus };

@@ -1,0 +1,4 @@
+.elements__trash_disabled {
+    visibility: hidden;
+    opacity: 0;
+}
