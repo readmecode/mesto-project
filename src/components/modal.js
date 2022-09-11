@@ -4,10 +4,6 @@ import {
     cardImg,
     cardTitle,
     imagePopup,
-    nameProfile,
-    jobProfile,
-    nameInput,
-    jobInput,
     profilePopup,
     avatarInput,
     avatarLink,
@@ -25,7 +21,7 @@ function handleEscapeKey(evt) {
 }
 
 function overlayHandler(e) {
-    if (e.target.querySelector(".popup__overlay")) {
+    if (e.currentTarget.querySelector(".popup")) {
         const activePopup = document.querySelector(".popup_opened");
         closePopup(activePopup);
     }
@@ -33,21 +29,22 @@ function overlayHandler(e) {
 
 function editFormSubmitHandler(e) {
     e.preventDefault();
-    nameProfile.textContent = nameInput.value;
-    jobProfile.textContent = jobInput.value;
-    editProfile();
-    closePopup(profilePopup);
+    editProfile().then(closePopup(profilePopup));
 }
 
 function avatarFormSubmitHandler(e) {
     e.preventDefault();
     avatarLink.src = avatarInput.value;
-    editAvatar();
-    closePopup(avatarPopup);
+    editAvatar().then(closePopup(avatarPopup));
+    e.target.reset();
 }
 
 function showAvatarEditButton() {
     avatarOverlay.classList.add("profile__avataroverlay_opened");
+}
+
+function hideAvatarEditButton() {
+    avatarOverlay.classList.remove("profile__avataroverlay_opened");
 }
 
 function openPopupImage(imgLink, imgTitle) {
@@ -64,4 +61,5 @@ export {
     openPopupImage,
     avatarFormSubmitHandler,
     showAvatarEditButton,
+    hideAvatarEditButton,
 };

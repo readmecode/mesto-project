@@ -25,7 +25,7 @@ import {
     avatarChangeButton,
     avatarOverlay,
     avatarLink,
-    avatarChangeForm
+    avatarChangeForm,
 } from "./components/constant.js";
 
 import { closePopup, openPopup, loadStatus } from "./components/utils.js";
@@ -33,7 +33,8 @@ import { closePopup, openPopup, loadStatus } from "./components/utils.js";
 import {
     editFormSubmitHandler,
     avatarFormSubmitHandler,
-    showAvatarEditButton
+    showAvatarEditButton,
+    hideAvatarEditButton
 } from "./components/modal.js";
 
 import { renderCard, createCard } from "./components/card.js";
@@ -75,10 +76,27 @@ profileEditForm.addEventListener("submit", editFormSubmitHandler);
 avatarChangeForm.addEventListener("submit", avatarFormSubmitHandler);
 
 avatarLink.addEventListener("mouseover", showAvatarEditButton);
+avatarLink.addEventListener("mouseout", hideAvatarEditButton);
 
-profileEditForm.addEventListener('submit', loadStatus);
-avatarChangeForm.addEventListener('submit', loadStatus);
-cardAddForm.addEventListener('submit', loadStatus);
+profileEditForm.addEventListener("submit", loadStatus);
+avatarChangeForm.addEventListener("submit", loadStatus);
+cardAddForm.addEventListener("submit", loadStatus);
 
-getProfile();
-getCards();
+export let userId = "";
+
+Promise.all([getProfile(), getCards()])
+    .then(([data, cardData]) => {
+        nameProfile.textContent = data.name;
+        jobProfile.textContent = data.about;
+        avatarLink.src = data.avatar;
+        userId = data._id;
+        cardData.forEach(function(cardData) {
+            renderCard(cardData.name,
+                cardData.link,
+                cardData._id,
+                cardData.owner._id,
+                cardData.likes
+            )
+        });
+    })
+    .catch((err) => console.log(err));

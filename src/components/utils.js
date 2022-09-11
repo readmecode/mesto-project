@@ -9,13 +9,12 @@ function closePopup(popup) {
 function openPopup(popup) {
     popup.classList.add("popup_opened");
     document.addEventListener("keydown", handleEscapeKey);
-    document.addEventListener("mousedown", overlayHandler);
+    popup.addEventListener("mousedown", overlayHandler);
 }
 
 function loadStatus(evt) {
-    const field = document.querySelectorAll(".popup__submit");
-    field.innerText = 'Сохранение...';
-    console.log('Сохранение...');
+    const field = evt.currentTarget.querySelector(".popup__submit");
+    field.innerText = "Сохранение...".finally((field) => field.innerText = field.value);
 }
 
 export { openPopup, closePopup, loadStatus };
