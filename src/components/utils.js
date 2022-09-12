@@ -3,7 +3,7 @@ import { handleEscapeKey, overlayHandler } from "./modal.js";
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
     document.removeEventListener("keydown", handleEscapeKey);
-    document.removeEventListener("mousedown", overlayHandler);
+    popup.removeEventListener("mousedown", overlayHandler);
 }
 
 function openPopup(popup) {
@@ -14,7 +14,7 @@ function openPopup(popup) {
 
 function loadStatus(evt) {
     const field = evt.currentTarget.querySelector(".popup__submit");
-    field.innerText = "Сохранение...".finally((field) => field.innerText = field.value);
+    field.innerText = "Сохранение...";
 }
 
 export { openPopup, closePopup, loadStatus };

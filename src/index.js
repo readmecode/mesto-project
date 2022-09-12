@@ -1,15 +1,8 @@
-import {
-    postCard,
-    editProfile,
-    getProfile,
-    getCards,
-    getIdData,
-} from "./components/api.js";
+import { getProfile, getCards } from "./components/api.js";
 
 import "./styles/index.css";
 
 import {
-    initialCards,
     profilePopup,
     cardPopup,
     profileEditButton,
@@ -23,9 +16,9 @@ import {
     jobProfile,
     avatarPopup,
     avatarChangeButton,
-    avatarOverlay,
     avatarLink,
     avatarChangeForm,
+    avatarOverlay,
 } from "./components/constant.js";
 
 import { closePopup, openPopup, loadStatus } from "./components/utils.js";
@@ -34,7 +27,7 @@ import {
     editFormSubmitHandler,
     avatarFormSubmitHandler,
     showAvatarEditButton,
-    hideAvatarEditButton
+    hideAvatarEditButton,
 } from "./components/modal.js";
 
 import { renderCard, createCard } from "./components/card.js";
@@ -76,7 +69,7 @@ profileEditForm.addEventListener("submit", editFormSubmitHandler);
 avatarChangeForm.addEventListener("submit", avatarFormSubmitHandler);
 
 avatarLink.addEventListener("mouseover", showAvatarEditButton);
-avatarLink.addEventListener("mouseout", hideAvatarEditButton);
+avatarOverlay.addEventListener("mouseout", hideAvatarEditButton);
 
 profileEditForm.addEventListener("submit", loadStatus);
 avatarChangeForm.addEventListener("submit", loadStatus);
@@ -91,12 +84,13 @@ Promise.all([getProfile(), getCards()])
         avatarLink.src = data.avatar;
         userId = data._id;
         cardData.forEach(function(cardData) {
-            renderCard(cardData.name,
+            renderCard(
+                cardData.name,
                 cardData.link,
                 cardData._id,
                 cardData.owner._id,
                 cardData.likes
-            )
+            );
         });
     })
     .catch((err) => console.log(err));

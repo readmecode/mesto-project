@@ -21,7 +21,7 @@ function handleEscapeKey(evt) {
 }
 
 function overlayHandler(e) {
-    if (e.currentTarget.querySelector(".popup")) {
+    if (e.target.querySelector(".popup__overlay")) {
         const activePopup = document.querySelector(".popup_opened");
         closePopup(activePopup);
     }
@@ -29,13 +29,25 @@ function overlayHandler(e) {
 
 function editFormSubmitHandler(e) {
     e.preventDefault();
-    editProfile().then(closePopup(profilePopup));
+    editProfile()
+        .then(closePopup(profilePopup))
+        .catch((err) => console.log(`Ошибка.....: ${err}`))
+        .finally((evt) => {
+            const field = profilePopup.querySelector(".popup__submit");
+            field.innerText = "Сохранить";
+        });
 }
 
 function avatarFormSubmitHandler(e) {
     e.preventDefault();
     avatarLink.src = avatarInput.value;
-    editAvatar().then(closePopup(avatarPopup));
+    editAvatar()
+        .then(closePopup(avatarPopup))
+        .catch((err) => console.log(`Ошибка.....: ${err}`))
+        .finally((evt) => {
+            const field = avatarPopup.querySelector(".popup__submit");
+            field.innerText = "Сохранить";
+        });
     e.target.reset();
 }
 
