@@ -37,9 +37,9 @@ function editFormSubmitHandler(e) {
     e.preventDefault();
     fieldProfile.innerText = "Сохранение...";
     editProfile(nameInput.value, jobInput.value)
-        .then((res) => {
-            nameProfile.textContent = res.name;
-            jobProfile.textContent = res.about;
+        .then((data) => {
+            nameProfile.textContent = data.name;
+            jobProfile.textContent = data.about;
             closePopup(profilePopup);
             e.target.reset();
             e.submitter.classList.add("popup__submit_inactive");
