@@ -36,31 +36,35 @@ function createCardTemplate(
     cardElementImage.src = imageLink;
     cardElementImage.alt = imageLink;
 
-    function changeZeroLikeIcon() {
-        if (counter.innerText == 0) {
-            counter.innerText = "";
+    counter.innerText = cardLikes.length;
+
+    if (cardLikes) {
+        const myLike = cardLikes.some((like) => {
+            return like._id === userId;
+        });
+        if (myLike) {
+            cardElementLike.classList.add("elements__icon_active");
         }
     }
 
-    function toggleLike(e) {
-        if (e.target.classList.contains("elements__icon_active")) {
+    cardElementLike.addEventListener("click", () => {
+        if (cardElementLike.classList.contains("elements__icon_active")) {
             deleteLikefromServer(cardId)
-                .then(
-                    (counter.innerText = Number(counter.innerText) - 1),
-                    changeZeroLikeIcon(),
-                    e.target.classList.remove("elements__icon_active")
-                )
+                .then((res) => {
+                    console.log(cardLikes);
+                    counter.textContent = res.cardLikes.length;
+                    cardElementLike.classList.remove("elements__icon_active");
+                })
                 .catch((err) => console.log(`Ошибка.....: ${err}`));
         } else {
             likeCardfromServer(cardId)
-                .then(
-                    changeZeroLikeIcon(),
-                    (counter.innerText = Number(counter.innerText) + 1),
-                    e.target.classList.add("elements__icon_active")
-                )
+                .then((res) => {
+                    counter.textContent = res.cardLikes.length;
+                    cardElementLike.classList.add("elements__icon_active");
+                })
                 .catch((err) => console.log(`Ошибка.....: ${err}`));
         }
-    }
+    });
 
     if (counter.innerText == 0) {
         counter.innerText = "";
@@ -69,8 +73,6 @@ function createCardTemplate(
     if (userId !== cardOwnerId) {
         cardElementTrash.classList.add("elements__trash_disabled");
     }
-
-    cardElementLike.addEventListener("click", toggleLike);
 
     if (cardLikes.some((item) => item._id == userId)) {
         cardElementLike.classList.add("elements__icon_active");
@@ -97,18 +99,27 @@ function renderCard(elementName, elementLink, cardId, cardOwnerId, cardLikes) {
         cardOwnerId,
         cardLikes
     );
-    cardsContainer.append(newCard);
+    cardsContainer.prepend(newCard);
 }
 
 function createCard(evt) {
+    evt.preventDefault();
     evt.submitter.classList.add("popup__submit_inactive");
     evt.submitter.disabled = true;
     postCard(newCardName.value, newCardLink.value)
-        .then(
-            (fieldCard.innerText = "Сохранение..."),
-            renderCard(newCardName.value, newCardLink.value),
-            closePopup(cardPopup)
-        )
+        .then((fieldCard.innerText = "Сохранение..."))
+        .then((res) => {
+            renderCard(res.name, res.link, res._id, res.owner._id, res.likes);
+            const card = createCardTemplate(
+                elementName,
+                elementLink,
+                cardId,
+                cardOwnerId,
+                cardLikes
+            );
+            cardsContainer.append(card);
+        })
+        .then(closePopup(cardPopup))
         .catch((err) => console.log(`Ошибка.....: ${err}`))
         .finally((evt) => {
             fieldCard.innerText = "Создать";
