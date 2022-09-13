@@ -105,14 +105,14 @@ function createCard(evt) {
         .then((fieldCard.innerText = "Сохранение..."), closePopup(cardPopup))
         .then((res) => {
             renderCard(res.name, res.link, res._id, res.owner._id, res.likes);
-            const card = createCardTemplate(
+            const newCard = createCardTemplate(
                 elementName,
                 elementLink,
                 cardId,
                 cardOwnerId,
                 cardLikes
             );
-            cardsContainer.append(card);
+            cardsContainer.append(newCard);
         })
         .catch((err) => console.log(`Ошибка.....: ${err}`))
         .finally((evt) => {

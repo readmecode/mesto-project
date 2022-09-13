@@ -92,6 +92,7 @@ export {
     imageCloseButton,
     profileEditButton,
     profileCloseButton,
+    profileSubmitButton,
     cardAddButton,
     nameProfile,
     jobProfile,
