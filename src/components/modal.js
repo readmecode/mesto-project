@@ -1,5 +1,5 @@
 import {get } from "jquery";
-import { editProfile, editAvatar, getProfile } from "./api.js";
+import { editProfile, editAvatar } from "./api.js";
 
 import {
     cardImg,
@@ -12,10 +12,10 @@ import {
     avatarOverlay,
     fieldAvatar,
     fieldProfile,
-    jobProfile,
-    nameProfile,
     nameInput,
     jobInput,
+    nameProfile,
+    jobProfile,
 } from "./constant.js";
 
 import { openPopup, closePopup } from "./utils.js";
@@ -37,9 +37,9 @@ function editFormSubmitHandler(e) {
     e.preventDefault();
     fieldProfile.innerText = "Сохранение...";
     editProfile(nameInput.value, jobInput.value)
-        .then((data) => {
-            nameProfile.textContent = data.name;
-            jobProfile.textContent = data.about;
+        .then(() => {
+            nameProfile.textContent = nameInput.value;
+            jobProfile.textContent = jobInput.value;
             closePopup(profilePopup);
             e.target.reset();
             e.submitter.classList.add("popup__submit_inactive");
@@ -55,8 +55,8 @@ function avatarFormSubmitHandler(e) {
     e.preventDefault();
     fieldAvatar.innerText = "Сохранение...";
     editAvatar(avatarInput.value)
-        .then((res) => {
-            avatarLink.src = res.avatar;
+        .then(() => {
+            avatarLink.src = avatarInput.value;
             closePopup(avatarPopup);
             e.target.reset();
             e.submitter.classList.add("popup__submit_inactive");

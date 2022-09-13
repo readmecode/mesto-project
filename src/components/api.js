@@ -1,5 +1,4 @@
 import { event } from "jquery";
-import { nameInput, jobInput, avatarLink } from "./constant.js";
 
 export const config = {
     baseUrl: "https://nomoreparties.co/v1/plus-cohort-14",
@@ -7,7 +6,7 @@ export const config = {
         authorization: "95e36dd7-8c37-4785-9cfa-2d706a4352cf",
         "Content-Type": "application/json",
     },
-};
+}
 
 export function getResponseData(res) {
     if (!res.ok) {
@@ -20,7 +19,7 @@ export const getProfile = () => {
     return fetch(`${config.baseUrl}/users/me`, { headers: config.headers }).then(
         getResponseData
     );
-};
+}
 
 export function editProfile(profile, job) {
     return fetch(`${config.baseUrl}/users/me`, {
@@ -30,8 +29,8 @@ export function editProfile(profile, job) {
             name: profile,
             about: job,
         }),
-    });
-};
+    })
+}
 
 export function editAvatar(link) {
     return fetch(`${config.baseUrl}/users/me/avatar`, {
@@ -40,14 +39,14 @@ export function editAvatar(link) {
         body: JSON.stringify({
             avatar: link,
         }),
-    });
-};
+    })
+}
 
 export const getCards = () => {
     return fetch(`${config.baseUrl}/cards`, { headers: config.headers }).then(
         getResponseData
     );
-};
+}
 
 export function postCard(name, url) {
     return fetch(`${config.baseUrl}/cards`, {
