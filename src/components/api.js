@@ -51,13 +51,15 @@ export const getCards = () => {
 
 export function postCard(name, url) {
     return fetch(`${config.baseUrl}/cards`, {
-        method: "POST",
-        headers: config.headers,
-        body: JSON.stringify({
-            name: name,
-            link: url,
-        }),
-    }).then(getResponseData);
+            method: "POST",
+            headers: config.headers,
+            body: JSON.stringify({
+                name: name,
+                link: url,
+            }),
+        })
+        .then(getResponseData)
+        .then((res) => console.log(res));
 }
 
 export function deleteCardfromServer(cardId) {

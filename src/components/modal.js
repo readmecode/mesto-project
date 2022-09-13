@@ -10,7 +10,11 @@ import {
     avatarPopup,
     avatarOverlay,
     fieldAvatar,
-    fieldProfile
+    fieldProfile,
+    jobProfile,
+    nameProfile,
+    nameInput,
+    jobInput
 } from "./constant.js";
 
 import { openPopup, closePopup } from "./utils.js";
@@ -31,9 +35,14 @@ function overlayHandler(e) {
 function editFormSubmitHandler(e) {
     e.preventDefault();
     editProfile()
-        .then((fieldProfile.innerText = "Сохранение..."), closePopup(profilePopup))
+        .then(
+            (fieldProfile.innerText = "Сохранение..."),
+            (nameProfile.textContent = nameInput.value),
+            (jobProfile.textContent = jobInput.value),
+            closePopup(profilePopup)
+        )
         .catch((err) => console.log(`Ошибка.....: ${err}`))
-        .finally((evt) => {
+        .finally((e) => {
             fieldProfile.innerText = "Сохранить";
         });
 }
@@ -47,7 +56,7 @@ function avatarFormSubmitHandler(e) {
             closePopup(avatarPopup)
         )
         .catch((err) => console.log(`Ошибка.....: ${err}`))
-        .finally((evt) => {
+        .finally((e) => {
             fieldAvatar.innerText = "Сохранить";
         });
     e.target.reset();

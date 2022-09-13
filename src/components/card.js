@@ -4,7 +4,7 @@ import {
     newCardName,
     newCardLink,
     cardPopup,
-    fieldCard
+    fieldCard,
 } from "./constant.js";
 import { openPopupImage } from "./modal.js";
 import { closePopup } from "./utils.js";
@@ -41,8 +41,6 @@ function createCardTemplate(
             counter.innerText = "";
         }
     }
-
-    counter.innerText = cardLikes.length;
 
     function toggleLike(e) {
         if (e.target.classList.contains("elements__icon_active")) {
@@ -99,14 +97,18 @@ function renderCard(elementName, elementLink, cardId, cardOwnerId, cardLikes) {
         cardOwnerId,
         cardLikes
     );
-    cardsContainer.prepend(newCard);
+    cardsContainer.append(newCard);
 }
 
 function createCard(evt) {
     evt.submitter.classList.add("popup__submit_inactive");
     evt.submitter.disabled = true;
     postCard(newCardName.value, newCardLink.value)
-        .then((fieldCard.innerText = "Сохранение..."), closePopup(cardPopup))
+        .then(
+            (fieldCard.innerText = "Сохранение..."),
+            renderCard(newCardName.value, newCardLink.value),
+            closePopup(cardPopup)
+        )
         .catch((err) => console.log(`Ошибка.....: ${err}`))
         .finally((evt) => {
             fieldCard.innerText = "Создать";
