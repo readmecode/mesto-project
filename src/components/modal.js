@@ -9,6 +9,8 @@ import {
     avatarLink,
     avatarPopup,
     avatarOverlay,
+    fieldAvatar,
+    fieldProfile
 } from "./constant.js";
 
 import { openPopup, closePopup } from "./utils.js";
@@ -22,31 +24,31 @@ function handleEscapeKey(evt) {
 
 function overlayHandler(e) {
     if (e.target.querySelector(".popup__overlay")) {
-        const activePopup = document.querySelector(".popup_opened");
-        closePopup(activePopup);
+        closePopup(e.currentTarget);
     }
 }
 
 function editFormSubmitHandler(e) {
     e.preventDefault();
     editProfile()
-        .then(closePopup(profilePopup))
+        .then((fieldProfile.innerText = "Сохранение..."), closePopup(profilePopup))
         .catch((err) => console.log(`Ошибка.....: ${err}`))
         .finally((evt) => {
-            const field = profilePopup.querySelector(".popup__submit");
-            field.innerText = "Сохранить";
+            fieldProfile.innerText = "Сохранить";
         });
 }
 
 function avatarFormSubmitHandler(e) {
     e.preventDefault();
-    avatarLink.src = avatarInput.value;
     editAvatar()
-        .then(closePopup(avatarPopup))
+        .then(
+            (fieldAvatar.innerText = "Сохранение..."),
+            (avatarLink.src = avatarInput.value),
+            closePopup(avatarPopup)
+        )
         .catch((err) => console.log(`Ошибка.....: ${err}`))
         .finally((evt) => {
-            const field = avatarPopup.querySelector(".popup__submit");
-            field.innerText = "Сохранить";
+            fieldAvatar.innerText = "Сохранить";
         });
     e.target.reset();
 }

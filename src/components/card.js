@@ -4,6 +4,7 @@ import {
     newCardName,
     newCardLink,
     cardPopup,
+    fieldCard
 } from "./constant.js";
 import { openPopupImage } from "./modal.js";
 import { closePopup } from "./utils.js";
@@ -35,21 +36,33 @@ function createCardTemplate(
     cardElementImage.src = imageLink;
     cardElementImage.alt = imageLink;
 
-    function toggleLike(e) {
-        if (e.target.classList.contains("elements__icon_active")) {
-            deleteLikefromServer(cardId).then(
-                (counter.innerText = Number(counter.innerText) - 1)
-            );
-            e.target.classList.remove("elements__icon_active");
-        } else {
-            likeCardfromServer(cardId).then(
-                (counter.innerText = Number(counter.innerText) + 1)
-            );
-            e.target.classList.add("elements__icon_active");
+    function changeZeroLikeIcon() {
+        if (counter.innerText == 0) {
+            counter.innerText = "";
         }
     }
 
     counter.innerText = cardLikes.length;
+
+    function toggleLike(e) {
+        if (e.target.classList.contains("elements__icon_active")) {
+            deleteLikefromServer(cardId)
+                .then(
+                    (counter.innerText = Number(counter.innerText) - 1),
+                    changeZeroLikeIcon(),
+                    e.target.classList.remove("elements__icon_active")
+                )
+                .catch((err) => console.log(`Ошибка.....: ${err}`));
+        } else {
+            likeCardfromServer(cardId)
+                .then(
+                    changeZeroLikeIcon(),
+                    (counter.innerText = Number(counter.innerText) + 1),
+                    e.target.classList.add("elements__icon_active")
+                )
+                .catch((err) => console.log(`Ошибка.....: ${err}`));
+        }
+    }
 
     if (counter.innerText == 0) {
         counter.innerText = "";
@@ -93,11 +106,10 @@ function createCard(evt) {
     evt.submitter.classList.add("popup__submit_inactive");
     evt.submitter.disabled = true;
     postCard(newCardName.value, newCardLink.value)
-        .then(closePopup(cardPopup))
+        .then((fieldCard.innerText = "Сохранение..."), closePopup(cardPopup))
         .catch((err) => console.log(`Ошибка.....: ${err}`))
         .finally((evt) => {
-            const field = cardPopup.querySelector(".popup__submit");
-            field.innerText = "Создать";
+            fieldCard.innerText = "Создать";
         });
     evt.target.reset();
 }

@@ -12,9 +12,4 @@ function openPopup(popup) {
     popup.addEventListener("mousedown", overlayHandler);
 }
 
-function loadStatus(evt) {
-    const field = evt.currentTarget.querySelector(".popup__submit");
-    field.innerText = "Сохранение...";
-}
-
-export { openPopup, closePopup, loadStatus };
+export { openPopup, closePopup };

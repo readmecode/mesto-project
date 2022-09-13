@@ -77,6 +77,11 @@ const profileForm = document.querySelector(".popup__input-container");
 const formInput = profileForm.querySelector(".popup__form-item");
 const formError = profileForm.querySelector(`.${formInput.id}-error`);
 
+const fieldAvatar = avatarPopup.querySelector(".popup__submit");
+const fieldProfile = profilePopup.querySelector(".popup__submit");
+const fieldCard = cardPopup.querySelector(".popup__submit");
+
+
 export {
     initialCards,
     profilePopup,
@@ -111,5 +116,8 @@ export {
     avatarInput,
     avatarLink,
     avatarChangeForm,
-    avatarOverlay
+    avatarOverlay,
+    fieldAvatar,
+    fieldProfile,
+    fieldCard
 };

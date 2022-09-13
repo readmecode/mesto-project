@@ -21,7 +21,7 @@ import {
     avatarOverlay,
 } from "./components/constant.js";
 
-import { closePopup, openPopup, loadStatus } from "./components/utils.js";
+import { closePopup, openPopup } from "./components/utils.js";
 
 import {
     editFormSubmitHandler,
@@ -70,10 +70,6 @@ avatarChangeForm.addEventListener("submit", avatarFormSubmitHandler);
 
 avatarLink.addEventListener("mouseover", showAvatarEditButton);
 avatarOverlay.addEventListener("mouseout", hideAvatarEditButton);
-
-profileEditForm.addEventListener("submit", loadStatus);
-avatarChangeForm.addEventListener("submit", loadStatus);
-cardAddForm.addEventListener("submit", loadStatus);
 
 export let userId = "";
 

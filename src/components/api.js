@@ -9,13 +9,6 @@ export const config = {
     },
 };
 
-export const headers = {
-    headers: {
-        authorization: "95e36dd7-8c37-4785-9cfa-2d706a4352cf",
-        "Content-Type": "application/json",
-    },
-};
-
 export function getResponseData(res) {
     if (!res.ok) {
         return Promise.reject(`Ошибка: ${res.status}`);
@@ -24,7 +17,9 @@ export function getResponseData(res) {
 }
 
 export const getProfile = () => {
-    return fetch(`${config.baseUrl}/users/me`, headers).then(getResponseData);
+    return fetch(`${config.baseUrl}/users/me`, { headers: config.headers }).then(
+        getResponseData
+    );
 };
 
 export const editProfile = () => {
@@ -49,7 +44,9 @@ export const editAvatar = () => {
 };
 
 export const getCards = () => {
-    return fetch(`${config.baseUrl}/cards`, headers).then(getResponseData);
+    return fetch(`${config.baseUrl}/cards`, { headers: config.headers }).then(
+        getResponseData
+    );
 };
 
 export function postCard(name, url) {
