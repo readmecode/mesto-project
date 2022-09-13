@@ -87,6 +87,30 @@ function createCardTemplate(
     return cardElement;
 }
 
+function createCard(evt) {
+    evt.preventDefault();
+    evt.submitter.classList.add("popup__submit_inactive");
+    evt.submitter.disabled = true;
+    postCard(newCardName.value, newCardLink.value)
+        .then((res) => {
+            renderCard(res.name, res.link, res._id, res.owner._id, res.likes);
+            const card = createCardTemplate(
+                res.name,
+                res.link,
+                res._id,
+                res.owner._id,
+                res.likes
+            );
+            cardsContainer.append(card);
+        })
+        .then((fieldCard.innerText = "Сохранение..."), closePopup(cardPopup))
+        .catch((err) => console.log(`Ошибка.....: ${err}`))
+        .finally(() => {
+            fieldCard.innerText = "Создать";
+        });
+    evt.target.reset();
+}
+
 function renderCard(elementName, elementLink, cardId, cardOwnerId, cardLikes) {
     const newCard = createCardTemplate(
         elementName,
@@ -96,29 +120,6 @@ function renderCard(elementName, elementLink, cardId, cardOwnerId, cardLikes) {
         cardLikes
     );
     cardsContainer.prepend(newCard);
-}
-
-function createCard(evt) {
-    evt.submitter.classList.add("popup__submit_inactive");
-    evt.submitter.disabled = true;
-    postCard(newCardName.value, newCardLink.value)
-        .then((fieldCard.innerText = "Сохранение..."), closePopup(cardPopup))
-        .then((res) => {
-            renderCard(res.name, res.link, res._id, res.owner._id, res.likes);
-            const newCard = createCardTemplate(
-                elementName,
-                elementLink,
-                cardId,
-                cardOwnerId,
-                cardLikes
-            );
-            cardsContainer.append(newCard);
-        })
-        .catch((err) => console.log(`Ошибка.....: ${err}`))
-        .finally((evt) => {
-            fieldCard.innerText = "Создать";
-        });
-    evt.target.reset();
 }
 
 export { createCardTemplate, renderCard, createCard };

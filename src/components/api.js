@@ -59,7 +59,6 @@ export function postCard(name, url) {
             }),
         })
         .then(getResponseData)
-        .then((res) => console.log(res));
 }
 
 export function deleteCardfromServer(cardId) {

@@ -74,18 +74,18 @@ avatarOverlay.addEventListener("mouseout", hideAvatarEditButton);
 export let userId = "";
 
 Promise.all([getProfile(), getCards()])
-    .then(([data, cardData]) => {
+    .then(([data, res]) => {
         nameProfile.textContent = data.name;
         jobProfile.textContent = data.about;
         avatarLink.src = data.avatar;
         userId = data._id;
-        cardData.forEach(function(cardData) {
+        res.forEach(function(res) {
             renderCard(
-                cardData.name,
-                cardData.link,
-                cardData._id,
-                cardData.owner._id,
-                cardData.likes
+                res.name,
+                res.link,
+                res._id,
+                res.owner._id,
+                res.likes
             );
         });
     })
