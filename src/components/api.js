@@ -22,23 +22,23 @@ export const getProfile = () => {
     );
 };
 
-export const editProfile = () => {
+export function editProfile(profile, job) {
     return fetch(`${config.baseUrl}/users/me`, {
         method: "PATCH",
         headers: config.headers,
         body: JSON.stringify({
-            name: `${nameInput.value}`,
-            about: `${jobInput.value}`,
+            name: profile,
+            about: job,
         }),
     });
 };
 
-export const editAvatar = () => {
+export function editAvatar(link) {
     return fetch(`${config.baseUrl}/users/me/avatar`, {
         method: "PATCH",
         headers: config.headers,
         body: JSON.stringify({
-            avatar: `${avatarLink.src}`,
+            avatar: link,
         }),
     });
 };

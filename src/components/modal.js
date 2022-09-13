@@ -1,4 +1,5 @@
-import { editProfile, editAvatar } from "./api.js";
+import {get } from "jquery";
+import { editProfile, editAvatar, getProfile } from "./api.js";
 
 import {
     cardImg,
@@ -14,7 +15,7 @@ import {
     jobProfile,
     nameProfile,
     nameInput,
-    jobInput
+    jobInput,
 } from "./constant.js";
 
 import { openPopup, closePopup } from "./utils.js";
@@ -34,32 +35,37 @@ function overlayHandler(e) {
 
 function editFormSubmitHandler(e) {
     e.preventDefault();
-    editProfile()
-        .then(
-            (fieldProfile.innerText = "Сохранение..."),
-            (nameProfile.textContent = nameInput.value),
-            (jobProfile.textContent = jobInput.value),
-            closePopup(profilePopup)
-        )
+    fieldProfile.innerText = "Сохранение...";
+    editProfile(nameInput.value, jobInput.value)
+        .then((res) => {
+            nameProfile.textContent = res.name;
+            jobProfile.textContent = res.about;
+            closePopup(profilePopup);
+            e.target.reset();
+            e.submitter.classList.add("popup__submit_inactive");
+            e.submitter.disabled = true;
+        })
         .catch((err) => console.log(`Ошибка.....: ${err}`))
-        .finally((e) => {
+        .finally(() => {
             fieldProfile.innerText = "Сохранить";
         });
 }
 
 function avatarFormSubmitHandler(e) {
     e.preventDefault();
-    editAvatar()
-        .then(
-            (fieldAvatar.innerText = "Сохранение..."),
-            (avatarLink.src = avatarInput.value),
-            closePopup(avatarPopup)
-        )
+    fieldAvatar.innerText = "Сохранение...";
+    editAvatar(avatarInput.value)
+        .then((res) => {
+            avatarLink.src = res.avatar;
+            closePopup(avatarPopup);
+            e.target.reset();
+            e.submitter.classList.add("popup__submit_inactive");
+            e.submitter.disabled = true;
+        })
         .catch((err) => console.log(`Ошибка.....: ${err}`))
-        .finally((e) => {
+        .finally(() => {
             fieldAvatar.innerText = "Сохранить";
         });
-    e.target.reset();
 }
 
 function showAvatarEditButton() {

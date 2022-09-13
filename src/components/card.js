@@ -80,35 +80,30 @@ function createCardTemplate(
 
     cardElementTrash.addEventListener("click", function(e) {
         deleteCardfromServer(cardId)
-            .then(e.target.closest(".elements__item").remove())
+            .then(() => {
+                e.target.closest(".elements__item").remove();
+            })
             .catch((err) => console.log(`Ошибка.....: ${err}`));
     });
 
     return cardElement;
 }
 
-function createCard(evt) {
-    evt.preventDefault();
-    evt.submitter.classList.add("popup__submit_inactive");
-    evt.submitter.disabled = true;
+function createCard(e) {
+    e.preventDefault();
+    fieldCard.innerText = "Сохранение...";
     postCard(newCardName.value, newCardLink.value)
         .then((res) => {
             renderCard(res.name, res.link, res._id, res.owner._id, res.likes);
-            const card = createCardTemplate(
-                res.name,
-                res.link,
-                res._id,
-                res.owner._id,
-                res.likes
-            );
-            cardsContainer.append(card);
+            closePopup(cardPopup);
+            e.target.reset();
+            e.submitter.classList.add("popup__submit_inactive");
+            e.submitter.disabled = true;
         })
-        .then((fieldCard.innerText = "Сохранение..."), closePopup(cardPopup))
         .catch((err) => console.log(`Ошибка.....: ${err}`))
         .finally(() => {
             fieldCard.innerText = "Создать";
         });
-    evt.target.reset();
 }
 
 function renderCard(elementName, elementLink, cardId, cardOwnerId, cardLikes) {
