@@ -38,37 +38,33 @@ function createCardTemplate(
 
     counter.innerText = cardLikes.length;
 
-    if (cardLikes) {
-        const myLike = cardLikes.some((like) => {
-            return like._id === userId;
-        });
-        if (myLike) {
-            cardElementLike.classList.add("elements__icon_active");
+    function changeZeroLike() {
+        if (counter.innerText == 0) {
+            counter.innerText = "";
         }
     }
+
+    changeZeroLike();
 
     cardElementLike.addEventListener("click", () => {
         if (cardElementLike.classList.contains("elements__icon_active")) {
             deleteLikefromServer(cardId)
                 .then((res) => {
-                    console.log(cardLikes);
-                    counter.textContent = res.cardLikes.length;
+                    counter.textContent = res.likes.length;
                     cardElementLike.classList.remove("elements__icon_active");
+                    changeZeroLike();
                 })
                 .catch((err) => console.log(`Ошибка.....: ${err}`));
         } else {
             likeCardfromServer(cardId)
                 .then((res) => {
-                    counter.textContent = res.cardLikes.length;
+                    counter.textContent = res.likes.length;
                     cardElementLike.classList.add("elements__icon_active");
+                    changeZeroLike();
                 })
                 .catch((err) => console.log(`Ошибка.....: ${err}`));
         }
     });
-
-    if (counter.innerText == 0) {
-        counter.innerText = "";
-    }
 
     if (userId !== cardOwnerId) {
         cardElementTrash.classList.add("elements__trash_disabled");
@@ -103,11 +99,10 @@ function renderCard(elementName, elementLink, cardId, cardOwnerId, cardLikes) {
 }
 
 function createCard(evt) {
-    evt.preventDefault();
     evt.submitter.classList.add("popup__submit_inactive");
     evt.submitter.disabled = true;
     postCard(newCardName.value, newCardLink.value)
-        .then((fieldCard.innerText = "Сохранение..."))
+        .then((fieldCard.innerText = "Сохранение..."), closePopup(cardPopup))
         .then((res) => {
             renderCard(res.name, res.link, res._id, res.owner._id, res.likes);
             const card = createCardTemplate(
@@ -119,7 +114,6 @@ function createCard(evt) {
             );
             cardsContainer.append(card);
         })
-        .then(closePopup(cardPopup))
         .catch((err) => console.log(`Ошибка.....: ${err}`))
         .finally((evt) => {
             fieldCard.innerText = "Создать";
