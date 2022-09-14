@@ -54,8 +54,8 @@ function avatarFormSubmitHandler(e) {
     e.preventDefault();
     fieldAvatar.innerText = "Сохранение...";
     editAvatar(avatarInput.value)
-        .then(() => {
-            avatarLink.src = avatarInput.value;
+        .then((res) => {
+            avatarLink.src = res.avatar;
             closePopup(avatarPopup);
             e.target.reset();
             e.submitter.classList.add("popup__submit_inactive");
