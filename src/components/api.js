@@ -29,7 +29,8 @@ export function editProfile(profile, job) {
             name: profile,
             about: job,
         }),
-    })
+    }).then(
+        getResponseData);
 }
 
 export function editAvatar(link) {
@@ -39,7 +40,8 @@ export function editAvatar(link) {
         body: JSON.stringify({
             avatar: link,
         }),
-    })
+    }).then(
+        getResponseData);
 }
 
 export const getCards = () => {

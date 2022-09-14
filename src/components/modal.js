@@ -37,11 +37,10 @@ function editFormSubmitHandler(e) {
     e.preventDefault();
     fieldProfile.innerText = "Сохранение...";
     editProfile(nameInput.value, jobInput.value)
-        .then(() => {
-            nameProfile.textContent = nameInput.value;
-            jobProfile.textContent = jobInput.value;
+        .then((res) => {
+            nameProfile.textContent = res.name;
+            jobProfile.textContent = res.about;
             closePopup(profilePopup);
-            e.target.reset();
             e.submitter.classList.add("popup__submit_inactive");
             e.submitter.disabled = true;
         })
