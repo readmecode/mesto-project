@@ -1,3 +1,7 @@
+import Api from "./api.js";
+
+import { api } from "../index.js";
+
 import {
     cardsTemplate,
     cardsContainer,
@@ -8,13 +12,6 @@ import {
 } from "./constant.js";
 import { openPopupImage } from "./modal.js";
 import { closePopup } from "./utils.js";
-
-import {
-    postCard,
-    deleteCardfromServer,
-    likeCardfromServer,
-    deleteLikefromServer,
-} from "./api.js";
 
 import { userId } from "../index.js";
 
@@ -48,7 +45,8 @@ function createCardTemplate(
 
     cardElementLike.addEventListener("click", () => {
         if (cardElementLike.classList.contains("elements__icon_active")) {
-            deleteLikefromServer(cardId)
+            api
+                .deleteLikefromServer(cardId)
                 .then((res) => {
                     counter.textContent = res.likes.length;
                     cardElementLike.classList.remove("elements__icon_active");
@@ -56,7 +54,8 @@ function createCardTemplate(
                 })
                 .catch((err) => console.log(`Ошибка.....: ${err}`));
         } else {
-            likeCardfromServer(cardId)
+            api
+                .likeCardfromServer(cardId)
                 .then((res) => {
                     counter.textContent = res.likes.length;
                     cardElementLike.classList.add("elements__icon_active");
@@ -79,7 +78,8 @@ function createCardTemplate(
     });
 
     cardElementTrash.addEventListener("click", function(e) {
-        deleteCardfromServer(cardId)
+        api
+            .deleteCardfromServer(cardId)
             .then(() => {
                 e.target.closest(".elements__item").remove();
             })
@@ -92,7 +92,8 @@ function createCardTemplate(
 function createCard(e) {
     e.preventDefault();
     fieldCard.innerText = "Сохранение...";
-    postCard(newCardName.value, newCardLink.value)
+    api
+        .postCard(newCardName.value, newCardLink.value)
         .then((res) => {
             renderCard(res.name, res.link, res._id, res.owner._id, res.likes);
             closePopup(cardPopup);

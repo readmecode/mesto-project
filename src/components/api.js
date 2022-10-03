@@ -1,84 +1,80 @@
 import { event } from "jquery";
 
-export const config = {
-    baseUrl: "https://nomoreparties.co/v1/plus-cohort-14",
-    headers: {
-        authorization: "95e36dd7-8c37-4785-9cfa-2d706a4352cf",
-        "Content-Type": "application/json",
-    },
-}
-
-export function getResponseData(res) {
-    if (!res.ok) {
-        return Promise.reject(`Ошибка: ${res.status}`);
+export default class Api {
+    constructor(options) {
+        this._baseUrl = options.baseUrl;
+        this._headers = options.headers;
     }
-    return res.json();
-}
 
-export const getProfile = () => {
-    return fetch(`${config.baseUrl}/users/me`, { headers: config.headers }).then(
-        getResponseData
-    );
-}
+    getResponseData(res) {
+        if (!res.ok) {
+            return Promise.reject(`Ошибка: ${res.status}`);
+        }
+        return res.json();
+    }
 
-export function editProfile(profile, job) {
-    return fetch(`${config.baseUrl}/users/me`, {
-        method: "PATCH",
-        headers: config.headers,
-        body: JSON.stringify({
-            name: profile,
-            about: job,
-        }),
-    }).then(
-        getResponseData);
-}
+    getProfile = () => {
+        return fetch(`${this._baseUrl}/users/me`, {
+            headers: this._headers,
+        }).then(this.getResponseData);
+    };
 
-export function editAvatar(link) {
-    return fetch(`${config.baseUrl}/users/me/avatar`, {
-        method: "PATCH",
-        headers: config.headers,
-        body: JSON.stringify({
-            avatar: link,
-        }),
-    }).then(
-        getResponseData);
-}
+    editProfile(profile, job) {
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({
+                name: profile,
+                about: job,
+            }),
+        }).then(this.getResponseData);
+    }
 
-export const getCards = () => {
-    return fetch(`${config.baseUrl}/cards`, { headers: config.headers }).then(
-        getResponseData
-    );
-}
+    editAvatar(link) {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: link,
+            }),
+        }).then(this.getResponseData);
+    }
 
-export function postCard(name, url) {
-    return fetch(`${config.baseUrl}/cards`, {
+    getCards = () => {
+        return fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then(
+            this.getResponseData
+        );
+    };
+
+    postCard(name, url) {
+        return fetch(`${this._baseUrl}/cards`, {
             method: "POST",
-            headers: config.headers,
+            headers: this._headers,
             body: JSON.stringify({
                 name: name,
                 link: url,
             }),
-        })
-        .then(getResponseData)
-}
+        }).then(this.getResponseData);
+    }
 
-export function deleteCardfromServer(cardId) {
-    return fetch(`${config.baseUrl}/cards/${cardId}`, {
-        method: "DELETE",
-        headers: config.headers,
-    }).then(getResponseData);
-}
+    deleteCardfromServer(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+            method: "DELETE",
+            headers: this._headers,
+        }).then(this.getResponseData);
+    }
 
-export function likeCardfromServer(cardId) {
-    return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
-        method: "PUT",
-        headers: config.headers,
-    }).then(getResponseData);
-}
+    likeCardfromServer(cardId) {
+        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+            method: "PUT",
+            headers: this._headers,
+        }).then(this.getResponseData);
+    }
 
-export function deleteLikefromServer(cardId) {
-    return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
-        method: "DELETE",
-        headers: config.headers,
-    }).then(getResponseData);
+    deleteLikefromServer(cardId) {
+        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+            method: "DELETE",
+            headers: this._headers,
+        }).then(this.getResponseData);
+    }
 }

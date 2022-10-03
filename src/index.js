@@ -1,4 +1,12 @@
-import { getProfile, getCards } from "./components/api.js";
+import Api from "./components/api.js";
+
+export const api = new Api({
+    baseUrl: "https://nomoreparties.co/v1/plus-cohort-14",
+    headers: {
+        authorization: "95e36dd7-8c37-4785-9cfa-2d706a4352cf",
+        "Content-Type": "application/json",
+    },
+});
 
 import "./styles/index.css";
 
@@ -73,20 +81,14 @@ avatarOverlay.addEventListener("mouseout", hideAvatarEditButton);
 
 export let userId = "";
 
-Promise.all([getProfile(), getCards()])
+Promise.all([api.getProfile(), api.getCards()])
     .then(([data, res]) => {
         nameProfile.textContent = data.name;
         jobProfile.textContent = data.about;
         avatarLink.src = data.avatar;
         userId = data._id;
         res.forEach(function(res) {
-            renderCard(
-                res.name,
-                res.link,
-                res._id,
-                res.owner._id,
-                res.likes
-            );
+            renderCard(res.name, res.link, res._id, res.owner._id, res.likes);
         });
     })
     .catch((err) => console.log(err));

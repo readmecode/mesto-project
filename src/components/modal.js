@@ -1,5 +1,6 @@
 import {get } from "jquery";
-import { editProfile, editAvatar } from "./api.js";
+import Api from "./api.js";
+
 
 import {
     cardImg,
